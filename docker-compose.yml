@@ -1,9 +1,12 @@
-version: '3'
+version: '3.9'
 services:
   # Database
   db:
     image: mysql:8.0
     restart: always
+    # Lưu trữ db ngoài container
+    volumes:
+      - db_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 12345
       # Tạo 1 database ant_home
@@ -36,4 +39,7 @@ services:
       - '8080:80'
     depends_on:
       - db
+volumes:
+  db_data:
+# Run
 # docker-compose up -d
