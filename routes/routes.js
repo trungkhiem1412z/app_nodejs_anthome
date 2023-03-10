@@ -8,6 +8,10 @@ const authenticateToken = require('../middleware/authenticateToken');
 // Áp dụng middleware để xác thực tính hợp lệ của token cho tất cả các tài nguyên bảo vệ
 // router.use(authenticateToken);
 
+router.get('/', (req, res) => {
+  res.send('OK OK OK!');
+});
+
 // Định nghĩa route Product
 router.post('/product/create', productController.createProduct);
 router.put('/product/update', productController.updateProduct);

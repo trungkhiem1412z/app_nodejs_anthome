@@ -1,0 +1,39 @@
+version: '3'
+services:
+  # Database
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      # Tạo 1 database ant_home
+      MYSQL_DATABASE: ant_home
+    ports:
+      - '3306:3306'
+  # Nodejs
+  app:
+    # image: 18.15.0-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - DB_NAME=ant_home
+      - DB_USER=root
+      - DB_PASS=12345
+      - DB_HOST=db
+    depends_on:
+      - db
+  # Phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: 12345
+    ports:
+      - '8080:80'
+    depends_on:
+      - db
+# docker-compose up -d
