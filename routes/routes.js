@@ -9,7 +9,7 @@ const authenticateToken = require('../middleware/authenticateToken');
 // router.use(authenticateToken);
 
 router.get('/', (req, res) => {
-  res.send('OK OK OK!');
+  res.send('Server đang chạy trên Port 3000!');
 });
 
 // Định nghĩa route Product
