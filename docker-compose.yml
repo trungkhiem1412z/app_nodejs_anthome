@@ -44,5 +44,3 @@ services:
       - db
 volumes:
   db_data:
-# Run
-# docker-compose up -d
